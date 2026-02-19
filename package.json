@@ -1,0 +1,18 @@
+{
+  "name": "fintech-demo",
+  "version": "1.0.0",
+  "description": "NDA-safe FinTech demo: deterministic finance + agentic AI",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js",
+    "db:migrate": "psql $DATABASE_URL -f db/schema.sql 2>/dev/null || set PGPASSWORD=postgres && psql -h localhost -U postgres -d fintech_demo -f db/schema.sql",
+    "db:seed": "psql $DATABASE_URL -f db/seed.sql 2>/dev/null || set PGPASSWORD=postgres && psql -h localhost -U postgres -d fintech_demo -f db/seed.sql",
+    "db:reset": "npm run db:migrate && npm run db:seed"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "openai": "^4.24.0",
+    "pg": "^8.11.3"
+  }
+}
